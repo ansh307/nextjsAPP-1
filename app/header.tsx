@@ -14,6 +14,9 @@ function Header() {
           <Link href="/todos" className="px-4 py-2 mx-2 bg-white text-black rounded-full hover:bg-blue-300 hover:text-white transition duration-300">
             Todos
           </Link>
+          <Link href="/search" className="px-4 py-2 mx-2 bg-white text-black rounded-full hover:bg-blue-300 hover:text-white transition duration-300">
+          Search
+          </Link>
         </div>
       </div>
       <div className="h-0.5 bg-white shadow-md text-white"></div>
