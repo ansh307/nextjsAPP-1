@@ -17,15 +17,21 @@ type searchResult = {
         }
     ]
 }
-
-const search =async (searchTerm : string) => {
+const search = async (searchTerm: string) => {
+  try {
     const res = await fetch(
-        `https://serpapi.com/search.json?q=${searchTerm}&api_key=${process.env.API_KEY}`
-    )
-
-    const data : searchResult = await res.json()
-    return data
-}
+      `https://serpapi.com/search.json?q=${searchTerm}&api_key=${process.env.API_KEY}`
+    );
+    if (!res.ok) {
+      throw new Error(`Failed to fetch data: ${res.status} ${res.statusText}`);
+    }
+    const data: searchResult = await res.json();
+    return data;
+  } catch (error) {
+    console.error('Error in search:', error);
+    throw error; // Rethrow the error for higher-level handling
+  }
+};
 
 async function SearchResult({params : {searchTerm}} : PageProps) {
     const searchResults = await search(searchTerm)
